@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Atividade 4 de Banco de Dados 3 - cadastro de alunos no Firebase Firestore" />
+  <title>BD3 · Cadastro de Alunos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header class="heading">
+      <span class="eyebrow">BANCO DE DADOS 3 · ATIVIDADE 4</span>
+      <h1>Cadastro de alunos<span class="accent">.</span></h1>
+      <p>Gerencie os registros de alunos usando o Firebase Cloud Firestore.</p>
+      <div id="connection" class="status" role="status" aria-live="polite"><span class="dot"></span><span id="connection-text">Conectando ao Firebase…</span></div>
+    </header>
+
+    <section class="panel" aria-labelledby="form-title">
+      <div class="panel-heading"><div><span class="tag">01 / CADASTRO</span><h2 id="form-title">Novo aluno</h2></div><span class="panel-note">Campos com * são obrigatórios</span></div>
+      <form id="form-aluno" autocomplete="on">
+        <div class="grid">
+          <label>Código do aluno *<input type="number" name="cod_aluno" min="1" step="1" placeholder="Ex.: 101" required /></label>
+          <label class="span-2">Nome completo *<input type="text" name="nome" maxlength="100" placeholder="Nome do aluno" required /></label>
+          <label>CPF *<input type="text" name="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00" required /></label>
+          <label>RG<input type="text" name="rg" maxlength="9" placeholder="Até 9 caracteres" /></label>
+          <label>Data de nascimento *<input type="date" name="data_nascimento" required /></label>
+          <label>Telefone do aluno<input type="tel" name="telefone_aluno" maxlength="11" inputmode="tel" placeholder="11999999999" /></label>
+          <label>Telefone do responsável<input type="tel" name="telefone_responsavel" maxlength="11" inputmode="tel" placeholder="11988888888" /></label>
+          <label>E-mail *<input type="email" name="email" maxlength="100" placeholder="aluno@exemplo.com" required /></label>
+        </div>
+        <div class="form-footer"><span class="hint">A data de nascimento será armazenada como <strong>Timestamp</strong> no Firestore.</span><button id="btn-salvar" type="submit" disabled>+ Cadastrar aluno</button></div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="list-title">
+      <div class="panel-heading"><div><span class="tag">02 / REGISTROS</span><h2 id="list-title">Alunos cadastrados <span id="total" class="counter">0</span></h2></div><button type="button" class="secondary" id="btn-atualizar" disabled>↻ Atualizar</button></div>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      <div class="table-wrap"><table><thead><tr><th>Código</th><th>Nome</th><th>CPF</th><th>E-mail</th><th>Nascimento</th><th>Ação</th></tr></thead><tbody id="alunos"><tr><td colspan="6" class="empty">Aguardando conexão…</td></tr></tbody></table></div>
+      <p class="footnote">Os registros aparecem apenas para a sessão anônima autenticada neste navegador. Não utilize dados pessoais reais no teste.</p>
+    </section>
+    <footer>Projeto acadêmico · Firebase Authentication + Cloud Firestore</footer>
+  </main>
+</body>
+</html>

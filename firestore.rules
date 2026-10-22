@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /BD3-NoSQL-Firestore/{alunoId} {
+      // Cada sessão anônima só consegue ler e apagar seus próprios alunos.
+      allow read, delete: if request.auth != null && resource.data.ownerUid == request.auth.uid;
+      allow create: if request.auth != null
+        && request.resource.data.ownerUid == request.auth.uid;
+      allow update: if false;
+    }
+  }
+}
